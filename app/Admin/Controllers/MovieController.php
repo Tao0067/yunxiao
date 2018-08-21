@@ -16,6 +16,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
+use App\Models\User;
 
 
 class MovieController extends Controller
@@ -24,7 +25,7 @@ class MovieController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('产品列表');
             $content->description('description');
 
             $content->body($this->grid());
@@ -65,7 +66,7 @@ class MovieController extends Controller
             $grid->id('ID')->sortable();
 
             // 直接通过字段名`username`添加列
-            $grid->username('用户名');
+            $grid->title('用户名');
 
             // 第三列显示director字段，通过display($callback)方法设置这一列的显示内容为users表中对应的用户名
             $grid->director()->display(function($userId) {
@@ -92,7 +93,7 @@ class MovieController extends Controller
             $grid->filter(function ($filter) {
 
                 // 设置created_at字段的范围查询
-                $filter->between('created_at', 'Created Time')->datetime();
+                $filter->between('created_at', '创建时间')->datetime();
             });
         });
     }
